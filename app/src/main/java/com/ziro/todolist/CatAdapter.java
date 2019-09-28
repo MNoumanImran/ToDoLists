@@ -1,4 +1,4 @@
-package com.darkpingouin.todolist;
+package com.ziro.todolist;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,9 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Le custom adapteur pour la listview catégorie
- */
+
 
 public class CatAdapter extends ArrayAdapter<Categorie> {
     public CatAdapter(Context context, List<Categorie> Categorie) {

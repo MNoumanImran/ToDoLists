@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="nb Tasks"
+                android:text="@string/app_name"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="18dp"
@@ -53,14 +53,15 @@
 
             <ImageView
                 android:id="@+id/add_btn"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_margin="10dp"
+                android:layout_marginBottom="30dp"
                 android:onClick="add"
-                android:src="@drawable/plus" />
+                android:src="@drawable/ic_plus" />
         </RelativeLayout>
     </RelativeLayout>
 
@@ -76,28 +77,33 @@
         <RelativeLayout
             android:id="@+id/top2"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/colorPrimary">
+            android:layout_height="150dp"
+            android:background="@color/colorAccent"
+            >
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="Settings"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+
 
             <ImageView
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
                 android:onClick="closeMenu"
                 android:padding="10dp"
                 android:src="@drawable/close" />
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="70dp"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_logo"/>
         </RelativeLayout>
+
+
 
         <LinearLayout
             android:background="#EFEFEF"
@@ -172,48 +178,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Up to Date" />
-        <LinearLayout
-            android:background="#EFEFEF"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="2dp">
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/label" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="addCategorie"
-                android:padding="10dp"
-                android:text="Categories"
-                android:textSize="20sp" />
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center_vertical"
-                android:onClick="addCategorie"
-                android:src="@drawable/config" />
-        </LinearLayout>
-
-
-
-        <ListView
-            android:id="@+id/checkCat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fillViewport="true">
-
-
-        </ListView>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#DFDFDF" />
     </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

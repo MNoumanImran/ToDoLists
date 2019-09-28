@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipe"
     android:layout_width="match_parent"
+    android:layout_margin="10dp"
     android:layout_height="80dp">
     <!-- Bottom View Start-->
     <LinearLayout
@@ -45,6 +46,11 @@
             android:layout_height="match_parent"
             android:layout_weight="22"
             android:background="#456345" />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_to_do_list"
+            android:layout_gravity="center"/>
 
         <RelativeLayout
             android:id="@+id/showItem"
@@ -57,7 +63,8 @@
                 android:layout_width="wrap_content"
                 android:id="@+id/dateView"
                 android:orientation="vertical"
-                android:layout_height="wrap_content">
+                android:layout_marginRight="20dp"
+android:layout_toLeftOf="@+id/done"                android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/dateHour"
                     android:layout_width="wrap_content"
@@ -78,15 +85,22 @@
                     android:text="2017"
                     android:textSize="10dp" />
             </LinearLayout>
-
+            <ImageView
+                android:id="@+id/done"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:visibility="invisible"
+                android:layout_marginRight="20dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_checked"
+                />
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/dateView"
                 android:layout_marginLeft="10dp"
                 android:textSize="20dp"
-                android:layout_toRightOf="@+id/dateView"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
                 tools:text="Title" />

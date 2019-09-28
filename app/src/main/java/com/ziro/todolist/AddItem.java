@@ -1,4 +1,4 @@
-package com.darkpingouin.todolist;
+package com.ziro.todolist;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -23,11 +23,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import static com.darkpingouin.todolist.R.id.date;
+import static com.ziro.todolist.R.id.date;
 
-/**
- * Lorsqu'on ajoute une task
- */
+
 public class AddItem extends AppCompatActivity {
     private Calendar calendar;
     public Spinner spinner2;
@@ -57,9 +55,7 @@ public class AddItem extends AppCompatActivity {
         addItemsOnSpinner2();
     }
 
-    /**
-     * Ajoute les catégories dans le spinner
-     */
+
     public void addItemsOnSpinner2() {
         List<String> list = new ArrayList<>();
         int i = 0;
@@ -88,7 +84,6 @@ public class AddItem extends AppCompatActivity {
 
     @SuppressWarnings("deprecation")
     /**
-     * Set la date
      * @param view View
      */
     public void setDate(View view) {
@@ -96,7 +91,6 @@ public class AddItem extends AppCompatActivity {
     }
 
     /**
-     * Set l'heure
      * @param view View
      */
     public void setTime(View view) {
@@ -117,9 +111,7 @@ public class AddItem extends AppCompatActivity {
         return null;
     }
 
-    /**
-     * Ouvre un picker de date
-     */
+
     private DatePickerDialog.OnDateSetListener myDateListener = new
             DatePickerDialog.OnDateSetListener() {
                 @Override
@@ -136,9 +128,7 @@ public class AddItem extends AppCompatActivity {
                     }
                 }
             };
-    /**
-     * Ouvre un picker d'heure
-     */
+
     private TimePickerDialog.OnTimeSetListener myTimeListener = new
             TimePickerDialog.OnTimeSetListener() {
                 @Override
@@ -153,7 +143,6 @@ public class AddItem extends AppCompatActivity {
             };
 
     /**
-     * Affiche la date choisie
      * @param year année
      * @param month mois
      * @param day jour
@@ -170,7 +159,6 @@ public class AddItem extends AppCompatActivity {
     }
 
     /**
-     * Affiche le temps dans la text view time
      * @param hour heure
      * @param minute minute
      */
@@ -179,7 +167,6 @@ public class AddItem extends AppCompatActivity {
     }
 
     /**
-     * Ferme la vue
      * @param view view
      */
     public void cancel(View view)
@@ -190,7 +177,6 @@ public class AddItem extends AppCompatActivity {
     }
 
     /**
-     * Sauvegarde l'item et envoies les données à la Mainactivity
      * @param view view
      * @throws ParseException
      */

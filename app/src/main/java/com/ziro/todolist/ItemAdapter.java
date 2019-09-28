@@ -1,4 +1,4 @@
-package com.darkpingouin.todolist;
+package com.ziro.todolist;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -6,16 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Custom adaptateur pour les Items
- */
+
 
 public class ItemAdapter extends ArrayAdapter<Item> {
 
@@ -39,6 +39,8 @@ public class ItemAdapter extends ArrayAdapter<Item> {
             viewHolder.dateYear = (TextView) convertView.findViewById(R.id.dateYear);
             viewHolder.categorie = (TextView) convertView.findViewById(R.id.categorie);
             viewHolder.back = (LinearLayout) convertView.findViewById(R.id.back);
+            viewHolder.done = (ImageView) convertView.findViewById(R.id.done);
+
             convertView.setTag(viewHolder);
         }
         Item Item = getItem(position);
@@ -52,7 +54,7 @@ public class ItemAdapter extends ArrayAdapter<Item> {
                 int color = cat.get(i).getColor();
                 String lighter = "#15" + Integer.toHexString(color).substring(2);
                 viewHolder.categorie.setBackgroundColor(cat.get(i).getColor());
-                if (Item.getStatus() == com.darkpingouin.todolist.Item.Status.DONE)
+                if (Item.getStatus() == com.ziro.todolist.Item.Status.DONE)
                     viewHolder.back.setBackgroundColor(Color.parseColor(lighter));
             }
             i++;
@@ -62,13 +64,21 @@ public class ItemAdapter extends ArrayAdapter<Item> {
             Item.setCategorie("none");
             int color = cat.get(0).getColor();
             String lighter = "#15" + Integer.toHexString(color).substring(2);
-            if (Item.getStatus() == com.darkpingouin.todolist.Item.Status.DONE)
+            if (Item.getStatus() == com.ziro.todolist.Item.Status.DONE)
                 viewHolder.back.setBackgroundColor(Color.parseColor(lighter));
             viewHolder.categorie.setBackgroundColor(cat.get(0).getColor());
         }
         viewHolder.title.setText(Item.getTitle());
         viewHolder.dateHour.setTextColor(Color.parseColor(Item.getDateColor()));
+        if(Item.getDateColor().equals("#121212")){
+           // Toast.makeText(getContext(),Item.getTitle()+" : Done",Toast.LENGTH_SHORT).show();
+            viewHolder.done.setVisibility(View.INVISIBLE);
+        }else {
+           // Toast.makeText(getContext(),Item.getTitle()+" : !Done",Toast.LENGTH_SHORT).show();
+            viewHolder.done.setVisibility(View.VISIBLE);
+        }
         viewHolder.dateMonth.setTextColor(Color.parseColor(Item.getDateColor()));
+
         viewHolder.dateYear.setTextColor(Color.parseColor(Item.getDateColor()));
         viewHolder.text.setText(Item.getText());
         viewHolder.dateMonth.setText(Item.getMonth());
@@ -86,19 +96,9 @@ public class ItemAdapter extends ArrayAdapter<Item> {
         public TextView dateMonth;
         public TextView categorie;
         public LinearLayout back;
+       public ImageView done;
     }
 
-    public View getViewByPosition(int pos, ListView listView) {
-        final int firstListItemPosition = listView.getFirstVisiblePosition();
-        final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
-
-        if (pos < firstListItemPosition || pos > lastListItemPosition) {
-            return listView.getAdapter().getView(pos, null, listView);
-        } else {
-            final int childIndex = pos - firstListItemPosition;
-            return listView.getChildAt(childIndex);
-        }
-    }
 
 }
 

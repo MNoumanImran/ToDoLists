@@ -1,4 +1,4 @@
-package com.darkpingouin.todolist;
+package com.ziro.todolist;
 
 /**
  * Reçois les notifications

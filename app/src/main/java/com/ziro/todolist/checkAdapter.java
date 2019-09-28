@@ -1,4 +1,4 @@
-package com.darkpingouin.todolist;
+package com.ziro.todolist;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -12,9 +12,6 @@ import android.widget.CheckBox;
 
 import java.util.List;
 
-/**
- * Custom adapteur pour les chckbox des catégories
- */
 
 public class checkAdapter extends ArrayAdapter<Categorie> {
     public checkAdapter(Context context, List<Categorie> Categorie) {

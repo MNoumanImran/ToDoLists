@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.darkpingouin.todolist.AddItem">
+    tools:context="com.ziro.todolist.AddItem">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,17 +13,19 @@
         android:id="@+id/textBar"
         android:orientation="horizontal"
         android:background="@color/colorPrimary"
+
         android:layout_height="wrap_content">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:onClick="cancel"
             android:src="@drawable/cancel"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:textColor="#FFFFFF"
             android:textSize="20dp"
+            android:background="@drawable/done"
             android:layout_alignParentEnd="true"
             android:text="Save"
             android:onClick="save"/>
@@ -36,6 +38,7 @@
         android:background="@color/colorPrimary"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
+        android:layout_margin="20dp"
         android:hint="Title"
         android:textColorHint="#DFDFDF"
         android:ems="10"
@@ -46,6 +49,8 @@
         android:layout_width="match_parent"
         android:padding="10dp"
         android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -73,12 +78,17 @@
     </LinearLayout>
     <View
         android:layout_width="match_parent"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray" />
     <LinearLayout
         android:layout_width="match_parent"
         android:padding="10dp"
         android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:visibility="gone"
         android:orientation="horizontal">
 
         <ImageView
@@ -106,12 +116,16 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:background="@android:color/darker_gray"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:hint="To do..."
         android:ems="10"
         android:id="@+id/txt" />

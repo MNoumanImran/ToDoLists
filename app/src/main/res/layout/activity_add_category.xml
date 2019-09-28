@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.darkpingouin.todolist.addCategory">
+    tools:context="com.ziro.todolist.addCategory">
 
     <RelativeLayout
         android:id="@+id/top"
@@ -50,6 +50,6 @@
             android:layout_alignParentRight="true"
             android:layout_margin="10dp"
             android:onClick="dialog"
-            android:src="@drawable/plus" />
+            android:src="@drawable/ic_plus" />
     </RelativeLayout>
 </LinearLayout>

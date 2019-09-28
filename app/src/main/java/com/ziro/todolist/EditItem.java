@@ -1,4 +1,4 @@
-package com.darkpingouin.todolist;
+package com.ziro.todolist;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -23,9 +23,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Lorsqu'une task est éditée
- */
+
 public class EditItem extends AppCompatActivity {
 
     int year, month, day, hour, minute;
@@ -64,9 +62,7 @@ public class EditItem extends AppCompatActivity {
         ((TextView) findViewById(R.id.txt)).setText(txt);
     }
 
-    /**
-     * Ajoute les catégories dans le spinner
-     */
+
     public void addItemsOnSpinner2() {
         List<String> list = new ArrayList<String>();
         int i = 0;
@@ -95,7 +91,6 @@ public class EditItem extends AppCompatActivity {
     }
 
     /**
-     * Set la date
      * @param view
      */
     public void setDate(View view) {
@@ -154,7 +149,6 @@ public class EditItem extends AppCompatActivity {
             };
 
     /**
-     * Aaffiche la date
      * @param year
      * @param month
      * @param day
@@ -170,7 +164,6 @@ public class EditItem extends AppCompatActivity {
     }
 
     /**
-     * Affiche l'heure
      * @param hour
      * @param minute
      */
@@ -178,7 +171,6 @@ public class EditItem extends AppCompatActivity {
         ((TextView) findViewById(R.id.time2)).setText(String.format("%02d", hour) + ":" + String.format("%02d", minute));
     }
     /**
-     * Supprime la tache
      * @param v
      */
     public void delete(View v) {
@@ -213,7 +205,6 @@ public class EditItem extends AppCompatActivity {
     }
 
     /**
-     * Enregistre les modifications
      * @param v
      * @throws ParseException
      */
@@ -243,7 +234,6 @@ public class EditItem extends AppCompatActivity {
     }
 
     /**
-     * Ferme la vue
      * @param v
      */
     public void cancel(View v) {

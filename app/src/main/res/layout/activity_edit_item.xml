@@ -4,7 +4,7 @@
     android:id="@+id/activity_add_item"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.darkpingouin.todolist.AddItem">
+    tools:context="com.ziro.todolist.AddItem">
 <LinearLayout
     android:layout_width="match_parent"
     android:orientation="vertical"
@@ -18,18 +18,19 @@
         android:padding="10dp">
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:onClick="cancel"
             android:src="@drawable/cancel" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:onClick="save"
             android:id="@+id/save"
             android:text="Save"
+            android:background="@drawable/done"
             android:textColor="#FFFFFF"
             android:textSize="20dp" />
     </RelativeLayout>
@@ -39,6 +40,7 @@
         android:id="@+id/textBar1"
         android:layout_width="match_parent"
         android:orientation="horizontal"
+        android:layout_margin="20dp"
         android:layout_height="wrap_content">
         <EditText
             android:id="@+id/title"
@@ -57,6 +59,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:orientation="horizontal"
         android:padding="10dp">
 
@@ -88,11 +92,16 @@
 
     <View
         android:layout_width="match_parent"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray" />
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:padding="10dp"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -120,21 +129,26 @@
         </LinearLayout>
     <View
         android:layout_width="match_parent"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_height="1dp"
+        android:visibility="gone"
         android:background="@android:color/darker_gray"/>
     <EditText
         android:id="@+id/txt"
         android:inputType="textMultiLine"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:text="To do..." />
 </LinearLayout>
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_margin="10dp"
-        android:src="@drawable/trash"
+        android:src="@drawable/ic_garbage"
         android:id="@+id/add_btn"
         android:onClick="delete"
         android:layout_alignParentBottom="true"

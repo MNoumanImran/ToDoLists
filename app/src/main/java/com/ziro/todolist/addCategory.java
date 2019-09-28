@@ -1,4 +1,4 @@
-package com.darkpingouin.todolist;
+package com.ziro.todolist;
 
 import android.app.Dialog;
 import android.graphics.Color;
@@ -15,30 +15,27 @@ import java.util.ArrayList;
 
 import petrov.kristiyan.colorpicker.ColorPicker;
 
-/**
- * Pour ajouter une nouvelle categorie
- */
+
 public class addCategory extends AppCompatActivity {
 
     int finalColor;
     ListView mListView;
-    public static ArrayList<Categorie> cat2 = new ArrayList<>();
+    public static ArrayList<Categorie> todo = new ArrayList<>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_category);
-        finalColor = Color.parseColor("#262D3B");
+        finalColor = Color.parseColor("#000");
         mListView = (ListView) findViewById(R.id.listView);
-        cat2 = MainActivity.getCat();
-        CatAdapter adapter = new CatAdapter(addCategory.this, cat2);
-        ((TextView) findViewById(R.id.nb_cat)).setText("Categories (" + String.valueOf(cat2.size()) + ")");
+        todo = MainActivity.getCat();
+        CatAdapter adapter = new CatAdapter(addCategory.this, todo);
+        ((TextView) findViewById(R.id.nb_cat)).setText("Categories (" + String.valueOf(todo.size()) + ")");
         mListView.setAdapter(adapter);
     }
 
     /**
-     * Set la couleur de la catgéorie
      * @param v
      * @param dialog
      */
@@ -65,16 +62,15 @@ public class addCategory extends AppCompatActivity {
 
 
     /**
-     * Supprime la catégorie de la liste
      * @param v
      */
     public void delete(View v) {
         final int position = mListView.getPositionForView((View) v.getParent());
         if (!MainActivity.cat.get(position).getName().equals("none")) {
             MainActivity.cat.remove(position);
-            cat2.remove(position);
+            todo.remove(position);
             CatAdapter a = (CatAdapter) mListView.getAdapter();
-            ((TextView) findViewById(R.id.nb_cat)).setText("Categories (" + String.valueOf(cat2.size()) + ")");
+            ((TextView) findViewById(R.id.nb_cat)).setText("Categories (" + String.valueOf(todo.size()) + ")");
             a.notifyDataSetChanged();
         } else
             Toast.makeText(getApplicationContext(), "Error can't delete \"none\" category", Toast.LENGTH_SHORT).show();
@@ -83,7 +79,6 @@ public class addCategory extends AppCompatActivity {
     }
 
     /**
-     * Lorsque l'utilisateur ajoute la categorie
      * @param view
      */
     public void dialog(View view) {
@@ -119,9 +114,9 @@ public class addCategory extends AppCompatActivity {
                 }
                 if (ok) {
                     MainActivity.cat.add(new Categorie(name, finalColor));
-                    cat2.add(new Categorie(name, finalColor));
+                    todo.add(new Categorie(name, finalColor));
                     CatAdapter a = (CatAdapter) mListView.getAdapter();
-                    ((TextView) findViewById(R.id.nb_cat)).setText("Categories (" + String.valueOf(cat2.size()) + ")");
+                    ((TextView) findViewById(R.id.nb_cat)).setText("Categories (" + String.valueOf(todo.size()) + ")");
                     a.notifyDataSetChanged();
                     dialog.dismiss();
                 }
@@ -134,7 +129,6 @@ public class addCategory extends AppCompatActivity {
     }
 
     /**
-     * Ferme la vue
      * @param v
      */
     public void finish(View v)

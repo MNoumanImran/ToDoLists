@@ -16,23 +16,23 @@ import java.util.ArrayList;
 import petrov.kristiyan.colorpicker.ColorPicker;
 
 
-public class addCategory extends AppCompatActivity {
+public class ZaddCat extends AppCompatActivity {
 
-    int finalColor;
-    ListView mListView;
-    public static ArrayList<Categorie> todo = new ArrayList<>();
+    int fColor;
+    ListView mListV;
+    public static ArrayList<Category> todo = new ArrayList<>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_category);
-        finalColor = Color.parseColor("#000");
-        mListView = (ListView) findViewById(R.id.listView);
-        todo = MainActivity.getCat();
-        CatAdapter adapter = new CatAdapter(addCategory.this, todo);
+        setContentView(R.layout.to_do_add_category);
+        fColor = Color.parseColor("#000");
+        mListV = (ListView) findViewById(R.id.listView);
+        todo = MainToDoActivity.getCat();
+        CattAdapter1 adapter = new CattAdapter1(ZaddCat.this, todo);
         ((TextView) findViewById(R.id.nb_cat)).setText("Categories (" + String.valueOf(todo.size()) + ")");
-        mListView.setAdapter(adapter);
+        mListV.setAdapter(adapter);
     }
 
     /**
@@ -46,11 +46,11 @@ public class addCategory extends AppCompatActivity {
             @Override
             public void onChooseColor(int position, int color) {
                 if (color != 0)
-                    finalColor = color;
+                    fColor = color;
                 else
-                    finalColor = Color.parseColor("#262D3B");
+                    fColor = Color.parseColor("#262D3B");
                 //((View) findViewById(R.id.color)).setBackgroundColor(color);
-                dialog.findViewById(R.id.color).setBackgroundColor(finalColor);
+                dialog.findViewById(R.id.color).setBackgroundColor(fColor);
             }
 
             @Override
@@ -65,16 +65,16 @@ public class addCategory extends AppCompatActivity {
      * @param v
      */
     public void delete(View v) {
-        final int position = mListView.getPositionForView((View) v.getParent());
-        if (!MainActivity.cat.get(position).getName().equals("none")) {
-            MainActivity.cat.remove(position);
+        final int position = mListV.getPositionForView((View) v.getParent());
+        if (!MainToDoActivity.cat.get(position).getName().equals("none")) {
+            MainToDoActivity.cat.remove(position);
             todo.remove(position);
-            CatAdapter a = (CatAdapter) mListView.getAdapter();
+            CattAdapter1 a = (CattAdapter1) mListV.getAdapter();
             ((TextView) findViewById(R.id.nb_cat)).setText("Categories (" + String.valueOf(todo.size()) + ")");
             a.notifyDataSetChanged();
         } else
-            Toast.makeText(getApplicationContext(), "Error can't delete \"none\" category", Toast.LENGTH_SHORT).show();
-        SwipeLayout s = (SwipeLayout) mListView.getChildAt(position);
+            Toast.makeText(getApplicationContext(), "Error can't btn_delete \"none\" category", Toast.LENGTH_SHORT).show();
+        SwipeLayout s = (SwipeLayout) mListV.getChildAt(position);
         s.close(true);
     }
 
@@ -86,7 +86,7 @@ public class addCategory extends AppCompatActivity {
         // custom dialog
         //final View v = (View) this;
         final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.add_cat_layou);
+        dialog.setContentView(R.layout.to_do_add_cat_layout);
         dialog.setTitle("Title...");
         dialog.findViewById(R.id.color).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,16 +106,16 @@ public class addCategory extends AppCompatActivity {
                 boolean ok = true;
                 int i =0;
                 String name = ((TextView) dialog.findViewById(R.id.catName)).getText().toString();
-                while (i < MainActivity.getCat().size())
+                while (i < MainToDoActivity.getCat().size())
                 {
-                    if (name.equals(MainActivity.getCat().get(i).getName()))
+                    if (name.equals(MainToDoActivity.getCat().get(i).getName()))
                         ok = false;
                     i++;
                 }
                 if (ok) {
-                    MainActivity.cat.add(new Categorie(name, finalColor));
-                    todo.add(new Categorie(name, finalColor));
-                    CatAdapter a = (CatAdapter) mListView.getAdapter();
+                    MainToDoActivity.cat.add(new Category(name, fColor));
+                    todo.add(new Category(name, fColor));
+                    CattAdapter1 a = (CattAdapter1) mListV.getAdapter();
                     ((TextView) findViewById(R.id.nb_cat)).setText("Categories (" + String.valueOf(todo.size()) + ")");
                     a.notifyDataSetChanged();
                     dialog.dismiss();

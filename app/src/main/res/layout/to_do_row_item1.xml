@@ -20,7 +20,7 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:onClick="doneClick"
-            android:src="@drawable/done" />
+            android:src="@drawable/btn_done" />
 
         <ImageView
             android:id="@+id/todoB"
@@ -29,7 +29,7 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:onClick="todoClick"
-            android:src="@drawable/cancel" />
+            android:src="@drawable/btn_cancel" />
         <!--What you want to show-->
     </LinearLayout>
     <!-- Bottom View End-->

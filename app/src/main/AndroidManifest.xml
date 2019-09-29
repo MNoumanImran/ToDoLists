@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name="com.ziro.todolist.MainActivity"/>
+        <activity android:name="com.ziro.todolist.MainToDoActivity"/>
         <activity android:name="com.ziro.todolist.Splash">
 
         <intent-filter>
@@ -18,11 +18,11 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name="com.ziro.todolist.NotificationPublisher" />
+        <receiver android:name="com.ziro.todolist.ToDoAppNotification" />
 
-        <activity android:name="com.ziro.todolist.AddItem" />
+        <activity android:name="com.ziro.todolist.ZAdditem1" />
         <activity android:name="com.ziro.todolist.EditItem" />
-        <activity android:name="com.ziro.todolist.addCategory"></activity>
+        <activity android:name="com.ziro.todolist.ZaddCat"></activity>
 
     </application>
 

@@ -11,8 +11,8 @@ import java.util.List;
 
 
 
-public class CatAdapter extends ArrayAdapter<Categorie> {
-    public CatAdapter(Context context, List<Categorie> Categorie) {
+public class CattAdapter1 extends ArrayAdapter<Category> {
+    public CattAdapter1(Context context, List<Category> Categorie) {
         super(context, 0, Categorie);
     }
 
@@ -20,16 +20,16 @@ public class CatAdapter extends ArrayAdapter<Categorie> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_category, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.to_do_row_category_layout, parent, false);
         }
-        CatAdapter.CatHolder viewHolder = (CatHolder) convertView.getTag();
+        CattAdapter1.CatHolder viewHolder = (CatHolder) convertView.getTag();
         if (viewHolder == null) {
-            viewHolder = new CatAdapter.CatHolder();
+            viewHolder = new CattAdapter1.CatHolder();
             viewHolder.name = (TextView) convertView.findViewById(R.id.title);
             viewHolder.color = (TextView) convertView.findViewById(R.id.color);
             convertView.setTag(viewHolder);
         }
-        Categorie cat = getItem(position);
+        Category cat = getItem(position);
         if (cat != null) {
             viewHolder.name.setText(cat.getName());
             viewHolder.color.setBackgroundColor(cat.getColor());

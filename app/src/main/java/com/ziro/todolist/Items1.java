@@ -3,7 +3,7 @@ package com.ziro.todolist;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Item {
+public class Items1 {
     private String title;
     private String text;
     private boolean passed;
@@ -14,7 +14,7 @@ public class Item {
     public enum Status {TODO, DONE}
 
 
-    public Item(String title, String text, Date dueDate)
+    public Items1(String title, String text, Date dueDate)
     {
         this.title = title;
         this.text = text;

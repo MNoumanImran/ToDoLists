@@ -35,7 +35,7 @@ public class EditItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         cancel = false;
-        setContentView(R.layout.activity_edit_item);
+        setContentView(R.layout.to_do_edit_item);
         String title = getIntent().getStringExtra("title");
         String txt = getIntent().getStringExtra("txt");
         String date = getIntent().getStringExtra("date");
@@ -46,11 +46,11 @@ public class EditItem extends AppCompatActivity {
         addItemsOnSpinner2();
         int i = 0;
         int selection = 0;
-        while (i < MainActivity.getCat().size()) {
-            if (categorie.equals(MainActivity.getCat().get(i).getName())) {
-                ((RelativeLayout) findViewById(R.id.textBar)).setBackgroundColor(MainActivity.getCat().get(i).getColor());
-                ((RelativeLayout) findViewById(R.id.textBar1)).setBackgroundColor(MainActivity.getCat().get(i).getColor());
-                ((TextView) findViewById(R.id.title)).setBackgroundColor(MainActivity.getCat().get(i).getColor());
+        while (i < MainToDoActivity.getCat().size()) {
+            if (categorie.equals(MainToDoActivity.getCat().get(i).getName())) {
+                ((RelativeLayout) findViewById(R.id.textBar)).setBackgroundColor(MainToDoActivity.getCat().get(i).getColor());
+                ((RelativeLayout) findViewById(R.id.textBar1)).setBackgroundColor(MainToDoActivity.getCat().get(i).getColor());
+                ((TextView) findViewById(R.id.title)).setBackgroundColor(MainToDoActivity.getCat().get(i).getColor());
                 selection = i;
             }
             i++;
@@ -66,8 +66,8 @@ public class EditItem extends AppCompatActivity {
     public void addItemsOnSpinner2() {
         List<String> list = new ArrayList<String>();
         int i = 0;
-        while (i < MainActivity.getCat().size()) {
-            list.add(MainActivity.getCat().get(i).getName());
+        while (i < MainToDoActivity.getCat().size()) {
+            list.add(MainToDoActivity.getCat().get(i).getName());
             i++;
         }
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
@@ -76,9 +76,9 @@ public class EditItem extends AppCompatActivity {
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ((RelativeLayout) findViewById(R.id.textBar)).setBackgroundColor(MainActivity.getCat().get(position).getColor());
-                ((RelativeLayout) findViewById(R.id.textBar1)).setBackgroundColor(MainActivity.getCat().get(position).getColor());
-                ((TextView) findViewById(R.id.title)).setBackgroundColor(MainActivity.getCat().get(position).getColor());
+                ((RelativeLayout) findViewById(R.id.textBar)).setBackgroundColor(MainToDoActivity.getCat().get(position).getColor());
+                ((RelativeLayout) findViewById(R.id.textBar1)).setBackgroundColor(MainToDoActivity.getCat().get(position).getColor());
+                ((TextView) findViewById(R.id.title)).setBackgroundColor(MainToDoActivity.getCat().get(position).getColor());
             }
 
             @Override
@@ -124,10 +124,7 @@ public class EditItem extends AppCompatActivity {
                 @Override
                 public void onDateSet(DatePicker arg0,
                                       int arg1, int arg2, int arg3) {
-                    // TODO Auto-generated method stub
-                    // arg1 = year
-                    // arg2 = month
-                    // arg3 = day
+
                     try {
                         showDate(arg1, arg2 + 1, arg3);
                     } catch (ParseException e) {
@@ -144,7 +141,7 @@ public class EditItem extends AppCompatActivity {
                     // arg1 = year
                     // arg2 = month
                     // arg3 = day
-                    showTime(arg1, arg2);
+                    showToDoTime(arg1, arg2);
                 }
             };
 
@@ -167,15 +164,15 @@ public class EditItem extends AppCompatActivity {
      * @param hour
      * @param minute
      */
-    private void showTime(int hour, int minute) {
+    private void showToDoTime(int hour, int minute) {
         ((TextView) findViewById(R.id.time2)).setText(String.format("%02d", hour) + ":" + String.format("%02d", minute));
     }
     /**
      * @param v
      */
-    public void delete(View v) {
+    public void DeleteToDo(View v) {
         final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.delete_task);
+        dialog.setContentView(R.layout.to_do_delete_task);
         dialog.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -195,7 +192,7 @@ public class EditItem extends AppCompatActivity {
                 returnIntent.putExtra("edit", "true");
                 returnIntent.putExtra("position", getIntent().getStringExtra("position"));
                 returnIntent.putExtra("categorie", "null");
-                returnIntent.putExtra("delete", "true");
+                returnIntent.putExtra("btn_delete", "true");
                 setResult(Activity.RESULT_OK, returnIntent);
                 finish();
 
@@ -208,7 +205,7 @@ public class EditItem extends AppCompatActivity {
      * @param v
      * @throws ParseException
      */
-    public void save(View v) throws ParseException {
+    public void saveToDo(View v) throws ParseException {
         Date current = new Date();
         String title = ((TextView) findViewById(R.id.title)).getText().toString();
         String txt = ((TextView) findViewById(R.id.txt)).getText().toString().replace('<', ' ');
@@ -225,7 +222,7 @@ public class EditItem extends AppCompatActivity {
             returnIntent.putExtra("edit", "true");
             returnIntent.putExtra("position", getIntent().getStringExtra("position"));
             returnIntent.putExtra("categorie", categorie);
-            returnIntent.putExtra("delete", "false");
+            returnIntent.putExtra("btn_delete", "false");
             setResult(Activity.RESULT_OK, returnIntent);
             finish();
         }
@@ -236,7 +233,7 @@ public class EditItem extends AppCompatActivity {
     /**
      * @param v
      */
-    public void cancel(View v) {
+    public void ToDocancel(View v) {
         Intent returnIntent = new Intent();
         setResult(Activity.RESULT_CANCELED, returnIntent);
         finish();

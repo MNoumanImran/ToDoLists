@@ -10,7 +10,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-public class NotificationPublisher extends BroadcastReceiver {
+public class ToDoAppNotification extends BroadcastReceiver {
 
     public static String NOTIFICATION_ID = "notification-id";
     public static String NOTIFICATION = "notification";

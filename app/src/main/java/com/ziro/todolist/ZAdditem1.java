@@ -26,7 +26,7 @@ import java.util.List;
 import static com.ziro.todolist.R.id.date;
 
 
-public class AddItem extends AppCompatActivity {
+public class ZAdditem1 extends AppCompatActivity {
     private Calendar calendar;
     public Spinner spinner2;
     private TextView dateView, timeView;
@@ -35,7 +35,7 @@ public class AddItem extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_item);
+        setContentView(R.layout.to_do_add_item);
         dateView = (TextView) findViewById(date);
         timeView = (TextView) findViewById(R.id.time);
         calendar = Calendar.getInstance();
@@ -59,8 +59,8 @@ public class AddItem extends AppCompatActivity {
     public void addItemsOnSpinner2() {
         List<String> list = new ArrayList<>();
         int i = 0;
-        while (i < MainActivity.getCat().size()) {
-            list.add(MainActivity.getCat().get(i).getName());
+        while (i < MainToDoActivity.getCat().size()) {
+            list.add(MainToDoActivity.getCat().get(i).getName());
             i++;
         }
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this,
@@ -69,8 +69,8 @@ public class AddItem extends AppCompatActivity {
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                findViewById(R.id.textBar).setBackgroundColor(MainActivity.getCat().get(position).getColor());
-                findViewById(R.id.title).setBackgroundColor(MainActivity.getCat().get(position).getColor());
+                findViewById(R.id.textBar).setBackgroundColor(MainToDoActivity.getCat().get(position).getColor());
+                findViewById(R.id.title).setBackgroundColor(MainToDoActivity.getCat().get(position).getColor());
             }
 
             @Override
@@ -202,6 +202,18 @@ public class AddItem extends AppCompatActivity {
                 finish();
             } else
                 Toast.makeText(getApplicationContext(), "Error you can't enter a date that is already passed !", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public boolean ISEmpty(String s){
+
+        ((TextView) findViewById(R.id.title)).setText(""+s);
+        String title = ((TextView) findViewById(R.id.title)).getText().toString();
+        if (title.length() < 0 || title.equals("")) {
+            return false;
+
+        }else {
+            return true;
         }
     }
 }

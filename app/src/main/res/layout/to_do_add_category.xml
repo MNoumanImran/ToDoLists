@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.ziro.todolist.addCategory">
+    tools:context="com.ziro.todolist.ZaddCat">
 
     <RelativeLayout
         android:id="@+id/top"
@@ -19,7 +19,7 @@
             android:paddingLeft="10dp"
             android:layout_centerVertical="true"
             android:onClick="finish"
-            android:src="@drawable/cancel"/>
+            android:src="@drawable/btn_cancel"/>
         <TextView
             android:id="@+id/nb_cat"
             android:layout_width="match_parent"

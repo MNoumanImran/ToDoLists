@@ -35,7 +35,7 @@
                 android:contentDescription="menu_list"
                 android:onClick="settings"
                 android:paddingLeft="10dp"
-                android:src="@drawable/menu" />
+                android:src="@drawable/zbtn_menu" />
 
         </RelativeLayout>
 
@@ -93,7 +93,7 @@
                 android:layout_marginRight="10dp"
                 android:onClick="closeMenu"
                 android:padding="10dp"
-                android:src="@drawable/close" />
+                android:src="@drawable/btn_close" />
 
             <ImageView
                 android:layout_width="120dp"
@@ -109,6 +109,7 @@
             android:background="#EFEFEF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:paddingLeft="2dp">
 
             <ImageView
@@ -116,7 +117,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/donetask" />
+                android:src="@drawable/btn_donetask" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -133,6 +134,7 @@
         <CheckBox
             android:id="@+id/switch_done"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:text="Done" />
 
@@ -140,6 +142,7 @@
             android:id="@+id/switch_todo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+           android:visibility="gone"
             android:text="To do" />
 
 

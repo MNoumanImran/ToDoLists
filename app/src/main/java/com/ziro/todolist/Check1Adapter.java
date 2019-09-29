@@ -13,8 +13,8 @@ import android.widget.CheckBox;
 import java.util.List;
 
 
-public class checkAdapter extends ArrayAdapter<Categorie> {
-    public checkAdapter(Context context, List<Categorie> Categorie) {
+public class Check1Adapter extends ArrayAdapter<Category> {
+    public Check1Adapter(Context context, List<Category> Categorie) {
         super(context, 0, Categorie);
     }
 
@@ -23,7 +23,7 @@ public class checkAdapter extends ArrayAdapter<Categorie> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.row_check_category, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.to_do_row_check_category, parent, false);
         }
         checkHolder viewHolder = (checkHolder) convertView.getTag();
         if (viewHolder == null) {
@@ -32,7 +32,7 @@ public class checkAdapter extends ArrayAdapter<Categorie> {
             convertView.setTag(viewHolder);
         }
 
-        final Categorie cat = getItem(position);
+        final Category cat = getItem(position);
         viewHolder.name.setText(cat.getName());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             viewHolder.name.setButtonTintList(ColorStateList.valueOf(cat.getColor()));

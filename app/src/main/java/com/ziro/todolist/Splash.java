@@ -12,11 +12,11 @@ public class Splash extends Activity {
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        setContentView(R.layout.splash);
+        setContentView(R.layout.to_do_splash);
          new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
-                Intent mainIntent = new Intent(Splash.this,MainActivity.class);
+                Intent mainIntent = new Intent(Splash.this, MainToDoActivity.class);
                 Splash.this.startActivity(mainIntent);
                 Splash.this.finish();
             }

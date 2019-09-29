@@ -32,13 +32,13 @@ import java.util.Date;
 import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainToDoActivity extends ActionBarActivity {
 
     int id;
     public static ListView mListView;
-    public static List<Item> items = new ArrayList<>();
-    public static List<Item> tmp = new ArrayList<>();
-    public static ArrayList<Categorie> cat = new ArrayList<>();
+    public static List<Items1> items = new ArrayList<>();
+    public static List<Items1> tmp = new ArrayList<>();
+    public static ArrayList<Category> cat = new ArrayList<>();
 
 
     TextView nb_tasks;
@@ -47,7 +47,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.to_do_activity_main);
         mListView = (ListView) findViewById(R.id.listView);
         nb_tasks = (TextView) findViewById(R.id.nb_tasks);
         aff_done = true;
@@ -104,12 +104,12 @@ public class MainActivity extends ActionBarActivity {
        getData();
         getCatData();
         if (cat.size() == 0)
-            cat.add(new Categorie("none", Color.parseColor("#262D3B")));
+            cat.add(new Category("none", Color.parseColor("#262D3B")));
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Intent intentMain = new Intent(MainActivity.this, EditItem.class);
-                Item item = (Item) mListView.getAdapter().getItem(position);
+                Intent intentMain = new Intent(MainToDoActivity.this, EditItem.class);
+                Items1 item = (Items1) mListView.getAdapter().getItem(position);
                 String title = item.getTitle();
                 String time = item.getTime();
                 String txt = item.getText();
@@ -125,14 +125,14 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        ItemAdapter adapter = new ItemAdapter(MainActivity.this, items);
+        ItemsAdapter1 adapter = new ItemsAdapter1(MainToDoActivity.this, items);
         mListView.setAdapter(adapter);
         checkDate();
     }
 
     public void getData() {
-        List<Item> list = new ArrayList<>();
-        Item tmp;
+        List<Items1> list = new ArrayList<>();
+        Items1 tmp;
         SQLiteDatabase mydatabase = openOrCreateDatabase("todolist", MODE_PRIVATE, null);
         mydatabase.execSQL("CREATE TABLE IF NOT EXISTS tasks(Titre VARCHAR, Date VARCHAR, Status VARCHAR, Txt VARCHAR, Cat VARCHAR);");
         Cursor resultSet = mydatabase.rawQuery("Select * from tasks", null);
@@ -152,11 +152,11 @@ public class MainActivity extends ActionBarActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            tmp = new Item(title, txt, d);
-            if (status.equals(Item.Status.DONE.toString()))
-                tmp.setStatus(Item.Status.DONE);
+            tmp = new Items1(title, txt, d);
+            if (status.equals(Items1.Status.DONE.toString()))
+                tmp.setStatus(Items1.Status.DONE);
             else
-                tmp.setStatus(Item.Status.TODO);
+                tmp.setStatus(Items1.Status.TODO);
             tmp.setCategorie(cat);
             list.add(tmp);
             count++;
@@ -167,8 +167,8 @@ public class MainActivity extends ActionBarActivity {
 
 
     public void getCatData() {
-        ArrayList<Categorie> list = new ArrayList<>();
-        Categorie tmp;
+        ArrayList<Category> list = new ArrayList<>();
+        Category tmp;
         SQLiteDatabase mydatabase = openOrCreateDatabase("todolist", MODE_PRIVATE, null);
         mydatabase.execSQL("CREATE TABLE IF NOT EXISTS cats(Name VARCHAR, Color VARCHAR);");
         Cursor resultSet = mydatabase.rawQuery("Select * from cats", null);
@@ -177,7 +177,7 @@ public class MainActivity extends ActionBarActivity {
         while (count < resultSet.getCount()) {
             String name = resultSet.getString(resultSet.getColumnIndex("Name"));
             String color = resultSet.getString(resultSet.getColumnIndex("Color"));
-            tmp = new Categorie(name, Integer.parseInt(color));
+            tmp = new Category(name, Integer.parseInt(color));
             list.add(tmp);
             count++;
             resultSet.moveToNext();
@@ -191,7 +191,7 @@ public class MainActivity extends ActionBarActivity {
      * @return
      */
     public String addToDataBase(int i) {
-        Item tmp = items.get(i);
+        Items1 tmp = items.get(i);
         String query = "'";
         query += tmp.getTitle() + "','";
         query += tmp.getDate() + tmp.getTime() + "','";
@@ -242,7 +242,7 @@ public class MainActivity extends ActionBarActivity {
      * @param v
      */
     public void add(View v) {
-        Intent intentMain = new Intent(MainActivity.this, AddItem.class);
+        Intent intentMain = new Intent(MainToDoActivity.this, ZAdditem1.class);
         startActivityForResult(intentMain, 1);
     }
 
@@ -254,7 +254,7 @@ public class MainActivity extends ActionBarActivity {
                 String title = data.getStringExtra("title");
                 String txt = data.getStringExtra("txt");
                 String date = data.getStringExtra("date");
-                String delete = data.getStringExtra("delete");
+                String delete = data.getStringExtra("btn_delete");
                 String category = data.getStringExtra("categorie");
                 SimpleDateFormat newDateFormat = new SimpleDateFormat("EE d MMM yyyy k:m");
                 Date d = null;
@@ -271,7 +271,7 @@ public class MainActivity extends ActionBarActivity {
                         e.printStackTrace();
                     }
                 } else {
-                    Item newItem = new Item(title, txt, d);
+                    Items1 newItem = new Items1(title, txt, d);
                     newItem.setCategorie(category);
                     try {
                         addToList(newItem);
@@ -323,7 +323,7 @@ public class MainActivity extends ActionBarActivity {
      * @param item
      * @throws ParseException
      */
-    public void addToList(Item item) throws ParseException {
+    public void addToList(Items1 item) throws ParseException {
         items.add(item);
         checkDate();
         saveData();
@@ -353,7 +353,7 @@ public class MainActivity extends ActionBarActivity {
      * @throws ParseException
      */
     public void modifyItem(int position, String title, String txt, Date d, String delete, String cate) throws ParseException {
-        Item item = items.get(position);
+        Items1 item = items.get(position);
         if (delete.equals("false")) {
             item.setTitle(title);
             item.setText(txt);
@@ -384,7 +384,7 @@ public class MainActivity extends ActionBarActivity {
      * @param item
      * @return
      */
-    public boolean showCatForItem(Item item) {
+    public boolean showCatForItem(Items1 item) {
         int i = 0;
         while (i < cat.size()) {
             if (cat.get(i).getName().equals(item.getCategorie())) {
@@ -404,9 +404,9 @@ public class MainActivity extends ActionBarActivity {
         while (i < nb_items) {
             t = false;
             p = false;
-            if (aff_done && items.get(i).getStatus() == Item.Status.DONE)
+            if (aff_done && items.get(i).getStatus() == Items1.Status.DONE)
                 t = true;
-            if (aff_todo && items.get(i).getStatus() == Item.Status.TODO)
+            if (aff_todo && items.get(i).getStatus() == Items1.Status.TODO)
                 t = true;
             if ((aff_passed && items.get(i).getPassed()))
                 p = true;
@@ -416,7 +416,7 @@ public class MainActivity extends ActionBarActivity {
                 tmp.add(items.get(i));
             i++;
         }
-        ItemAdapter adapter = new ItemAdapter(MainActivity.this, tmp);
+        ItemsAdapter1 adapter = new ItemsAdapter1(MainToDoActivity.this, tmp);
         mListView.setAdapter(adapter);
 //        if (tmp.size() > 1)
 //            ((TextView) findViewById(R.id.nb_tasks)).setText(String.valueOf(tmp.size()) + " Tasks");
@@ -432,8 +432,8 @@ public class MainActivity extends ActionBarActivity {
     public void todoClick(View v) {
         final int position = mListView.getPositionForView((View) v.getParent());
         SwipeLayout s = (SwipeLayout) mListView.getChildAt(position);
-        Item a = items.get(position);
-        a.setStatus(Item.Status.TODO);
+        Items1 a = items.get(position);
+        a.setStatus(Items1.Status.TODO);
         affListCorresponding();
         saveData();
         s.close(true);
@@ -443,10 +443,10 @@ public class MainActivity extends ActionBarActivity {
     public void doneClick(View v) {
         final int position = mListView.getPositionForView((View) v.getParent());
         SwipeLayout s = (SwipeLayout) mListView.getChildAt(position);
-        Item a = items.get(position);
-        a.setStatus(Item.Status.DONE);
+        Items1 a = items.get(position);
+        a.setStatus(Items1.Status.DONE);
         s.close(true);
-        ItemAdapter b = (ItemAdapter) mListView.getAdapter();
+        ItemsAdapter1 b = (ItemsAdapter1) mListView.getAdapter();
         affListCorresponding();
         b.notifyDataSetChanged();
         saveData();
@@ -459,9 +459,9 @@ public class MainActivity extends ActionBarActivity {
      */
     private void scheduleNotification(Notification notification, int delay) {
 
-        Intent notificationIntent = new Intent(this, NotificationPublisher.class);
-        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, 1);
-        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification);
+        Intent notificationIntent = new Intent(this, ToDoAppNotification.class);
+        notificationIntent.putExtra(ToDoAppNotification.NOTIFICATION_ID, 1);
+        notificationIntent.putExtra(ToDoAppNotification.NOTIFICATION, notification);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         long futureInMillis = SystemClock.elapsedRealtime() + delay;
@@ -475,7 +475,7 @@ public class MainActivity extends ActionBarActivity {
         Notification.Builder builder = new Notification.Builder(this);
         builder.setContentTitle(Title);
         builder.setContentText(content);
-        builder.setSmallIcon(R.drawable.ic_notification);
+        builder.setSmallIcon(R.drawable.btn_ic_notification);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             builder.setColor(color);
         }
@@ -484,8 +484,8 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-    public static ArrayList<Categorie> getCatA() {
-        ArrayList<Categorie> tmp = new ArrayList<Categorie>();
+    public static ArrayList<Category> getCatA() {
+        ArrayList<Category> tmp = new ArrayList<Category>();
         int i = 0;
         while (i < cat.size())
             tmp.add(cat.get(i++));
@@ -498,7 +498,7 @@ public class MainActivity extends ActionBarActivity {
         d.closeDrawers();
     }
 
-    public static ArrayList<Categorie> getCat() {
+    public static ArrayList<Category> getCat() {
         return (getCatA());
     }
 
@@ -526,7 +526,7 @@ public class MainActivity extends ActionBarActivity {
      * @param v
      */
     public void addCategorie(View v) {
-        Intent intentMain = new Intent(MainActivity.this, addCategory.class);
+        Intent intentMain = new Intent(MainToDoActivity.this, ZaddCat.class);
         startActivityForResult(intentMain, 2);
         checkCategories();
     }

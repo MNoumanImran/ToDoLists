@@ -2,7 +2,7 @@ package com.ziro.todolist;
 
 
 
-public class Categorie {
+public class Category {
     private String name;
     private int color;
     private boolean show;
@@ -11,7 +11,7 @@ public class Categorie {
      * @param n nom
      * @param c couleur
      */
-    public Categorie(String n, int c)
+    public Category(String n, int c)
     {
         this.name = n;
         this.color = c;

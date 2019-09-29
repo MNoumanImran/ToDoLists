@@ -1,0 +1,19 @@
+Index: app/src/main/java/com/ziro/todolist/EditItem.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/ziro/todolist/EditItem.java	(date 1569680318000)
++++ app/src/main/java/com/ziro/todolist/EditItem.java	(date 1569689483055)
+@@ -124,10 +124,7 @@
+                 @Override
+                 public void onDateSet(DatePicker arg0,
+                                       int arg1, int arg2, int arg3) {
+-                    // TODO Auto-generated method stub
+-                    // arg1 = year
+-                    // arg2 = month
+-                    // arg3 = day
++
+                     try {
+                         showDate(arg1, arg2 + 1, arg3);
+                     } catch (ParseException e) {
